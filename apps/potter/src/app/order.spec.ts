@@ -39,4 +39,13 @@ describe('Order', () => {
     order.buy(4);
     expect(order.price).toBe(basic_price);
   })
+
+  it('order basic - multiple same books - b1 * 3', () => {
+    const order = new Order();
+    order.buy(1);
+    order.buy(1);
+    order.buy(1);
+    expect(order.price).toBe(basic_price * 3);
+  })
+
 });
