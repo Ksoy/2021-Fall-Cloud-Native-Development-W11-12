@@ -1,4 +1,4 @@
-import { basic_price, Order } from './order';
+import { discount, basic_price, Order } from './order';
 
 describe('Order', () => {
   let order: Order;
@@ -47,22 +47,22 @@ describe('Order', () => {
 
   test('simple discounts - b0 * 1, b1 * 1', () => {
     buyBooks([0, 1]);
-    expect(order.price).toBe(basic_price * 2 * 0.95);
+    expect(order.price).toBe(basic_price * 2 * discount[2]);
   })
 
   test('simple discounts - b0 * 1, b2 * 1, b4 * 1', () => {
     buyBooks([0, 2, 4]);
-    expect(order.price).toBe(basic_price * 3 * 0.9);
+    expect(order.price).toBe(basic_price * 3 * discount[3]);
   })
 
   test('simple discounts - b0 * 1, b1 * 1, b2 * 1, b4 * 1', () => {
     buyBooks([0, 1, 2, 4]);
-    expect(order.price).toBe(basic_price * 4 * 0.8);
+    expect(order.price).toBe(basic_price * 4 * discount[4]);
   })
 
   test('simple discounts - b0 * 1, b1 * 1, b2 * 1, b3 * 1, b4 * 1', () => {
     buyBooks([0, 1, 2, 3, 4]);
-    expect(order.price).toBe(basic_price * 5 * 0.75);
+    expect(order.price).toBe(basic_price * 5 * discount[5]);
   })
 
   function buyBooks(books: Array<number>) {
