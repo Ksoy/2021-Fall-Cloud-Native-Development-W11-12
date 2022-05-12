@@ -45,6 +45,26 @@ describe('Order', () => {
     expect(order.price).toBe(basic_price * 3);
   })
 
+  test('simple discounts - b0 * 1, b1 * 1', () => {
+    buyBooks([0, 1]);
+    expect(order.price).toBe(basic_price * 2 * 0.95);
+  })
+
+  test('simple discounts - b0 * 1, b2 * 1, b4 * 1', () => {
+    buyBooks([0, 2, 4]);
+    expect(order.price).toBe(basic_price * 3 * 0.9);
+  })
+
+  test('simple discounts - b0 * 1, b1 * 1, b2 * 1, b4 * 1', () => {
+    buyBooks([0, 1, 2, 4]);
+    expect(order.price).toBe(basic_price * 4 * 0.8);
+  })
+
+  test('simple discounts - b0 * 1, b1 * 1, b2 * 1, b3 * 1, b4 * 1', () => {
+    buyBooks([0, 1, 2, 3, 4]);
+    expect(order.price).toBe(basic_price * 5 * 0.75);
+  })
+
   function buyBooks(books: Array<number>) {
     books.forEach((book: number) => {
       order.buy(book);
