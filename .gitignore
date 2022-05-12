@@ -11,3 +11,4 @@ build/
 dist/
 MDB_ID
 node_modules
+result.json
