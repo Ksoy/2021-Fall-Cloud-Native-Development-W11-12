@@ -1,51 +1,54 @@
 import { basic_price, Order } from './order';
 
 describe('Order', () => {
+  let order: Order;
+
+  beforeEach(() => {
+    order = new Order();
+  });
+
   it('should create an instance', () => {
-    expect(new Order()).toBeTruthy();
+    expect(order).toBeTruthy();
   });
 
   it('order basic', () => {
-    const order = new Order();
     expect(order.price).toBe(0);
   })
 
   it('order basic - b0 * 1', () => {
-    const order = new Order();
-    order.buy(0);
+    buyBooks([0]);
     expect(order.price).toBe(basic_price);
   })
 
   it('order basic - b1 * 1', () => {
-    const order = new Order();
-    order.buy(1);
+    buyBooks([1]);
     expect(order.price).toBe(basic_price);
   })
 
   it('order basic - b2 * 1', () => {
-    const order = new Order();
-    order.buy(2);
+    buyBooks([2]);
     expect(order.price).toBe(basic_price);
   })
 
   it('order basic - b3 * 1', () => {
-    const order = new Order();
-    order.buy(3);
+    buyBooks([3]);
     expect(order.price).toBe(basic_price);
   })
 
   it('order basic - b4 * 1', () => {
-    const order = new Order();
-    order.buy(4);
+    buyBooks([4]);
     expect(order.price).toBe(basic_price);
   })
 
   it('order basic - multiple same books - b1 * 3', () => {
-    const order = new Order();
-    order.buy(1);
-    order.buy(1);
-    order.buy(1);
+    buyBooks([1, 1, 1]);
     expect(order.price).toBe(basic_price * 3);
   })
+
+  function buyBooks(books: Array<number>) {
+    books.forEach((book: number) => {
+      order.buy(book);
+    })
+  }
 
 });
