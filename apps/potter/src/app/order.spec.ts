@@ -86,10 +86,24 @@ describe('Order', () => {
     expect(order.price).toBe(basic_price + basic_price * 5 * discount[5]);
   })
 
+  test('edge cases - b0 * 2, b1 * 2, b2 * 2, b3 * 1, b4 * 1', () => {
+    buyBooks([0, 0, 1, 1, 2, 2, 3, 4]);
+    expect(order.price).toBe(2 * basic_price * 4 * discount[4]);
+  })
+
+  test('edge cases - b0 * 5, b1 * 5, b2 * 4, b3 * 5, b4 * 4', () => {
+    buyBooks([0, 0, 0, 0, 0,
+              1, 1, 1, 1, 1,
+              2, 2, 2, 2,
+              3, 3, 3, 3, 3,
+              4, 4, 4, 4]);
+    expect(order.price).toBe(3 * basic_price * 5 * discount[5]
+                           + 2 * basic_price * 4 * discount[4]);
+  })
+
   function buyBooks(books: Array<number>) {
     books.forEach((book: number) => {
       order.buy(book);
     })
   }
-
 });
